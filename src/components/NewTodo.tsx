@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import classes from "./NewTodo.module.css";
 
 // Step 1 - We use React.FC to turn the function into a functional component.
 // Step 2 - We then <{}> and pass onAddTodo as a prop to the NewTodo component.
@@ -37,7 +38,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Todo text</label>
       <input ref={todoTextInputRef} type="text" id="text" />
       <button>Add Todo</button>
