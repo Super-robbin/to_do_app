@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import classes from "./NewTodo.module.css";
+import { TodosContext } from "../store/todos-context";
 
 // Step 1 - We use React.FC to turn the function into a functional component.
 // Step 2 - We then <{}> and pass onAddTodo as a prop to the NewTodo component.
@@ -9,7 +10,13 @@ import classes from "./NewTodo.module.css";
 // Step 4 - Now we have to pass a parameter to the function (text: string), otherwise we get an error below,
 // when we try to props.onAddTodo(enteredText) in submitHandler.
 // Step 5 - We can now create the function in App.tsx and pass it to the NewTodo component as a prop.
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+
+// UPDATE: We are using the useContext hook to get access to the TodosContext object. Therefore,
+// we don't need to pass the items and onRemoveTodo props to the Todos component anymore.
+// We change NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props)
+// to the simplified version below.
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
   // We use HTMLInputElement which has a built-in type property.
   // For a button, it would be HTMLButtonElement. For a paragraph, it would be HTMLParagraphElement.
   // IMPORTANT: We have to provide a starting value (null in this case) otherwise we get an error
@@ -34,7 +41,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
 
   return (
