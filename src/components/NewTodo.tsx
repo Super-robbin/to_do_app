@@ -1,0 +1,40 @@
+import { useRef } from "react";
+
+const NewTodo: React.FC = () => {
+  // We use HTMLInputElement which has a built-in type property.
+  // For a button, it would be HTMLButtonElement. For a paragraph, it would be HTMLParagraphElement.
+  // IMPORTANT: We have to provide a starting value (null in this case) otherwise we get an error
+  // below when we use ref={} in the input element.
+  const todoTextInputRef = useRef<HTMLInputElement>(null);
+
+  // For the event object, we can use the type React.FormEvent.
+  // If we pass React.MouseEvent to onSubmit, we get an error.
+  const submitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    // We get autocompletion with current?.value because the ref is not necessarily set
+    // to a value yet when we use it. So the ? signals to Typescript that it tries to access value
+    // and if that succeeds, the entered value will be stored in enteredText
+    // but if that fails, if the connection should not be established yet,
+    // null will be stored in enteredText.
+    // If you know that a connection is established, you can use current!.value,
+    // only use it if you are 100% sure that the value can't be null or undefined.
+    const enteredText = todoTextInputRef.current!.value;
+
+    if (enteredText.trim().length === 0) {
+      // We can throw an error
+      return;
+    }
+
+    
+  };
+
+  return (
+    <form onSubmit={submitHandler}>
+      <label htmlFor="text">Todo text</label>
+      <input ref={todoTextInputRef} type="text" id="text" />
+      <button>Add Todo</button>
+    </form>
+  );
+};
+
+export default NewTodo;

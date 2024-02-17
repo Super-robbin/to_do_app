@@ -1,5 +1,6 @@
 import React from "react";
 import Todo from "../models/todo";
+import TodoItem from "./TodoItem";
 
 // React.FC is a generic type which turns the function into a functional component.
 // We then <{}> to say thatFC type is generic and the concrete value I'm plugging in now
@@ -11,7 +12,7 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <li key={item.id}>{item.text}</li>
+        <TodoItem key={item.id} text={item.text} />
       ))}
     </ul>
   );
