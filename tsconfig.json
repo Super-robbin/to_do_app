@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es5", // what kind of JavaScript code your TypeScript code is transformed into
     "lib": [
-      "dom",
+      "dom", // ensures that some default DOM types are understood by TypeScript
+      // for example HTMLInputElement in NewTodo.tsx
       "dom.iterable",
       "esnext"
-    ],
-    "allowJs": true,
+    ], // default Typescript libraries (built into it), we don't need to install extra packages
+    "allowJs": true, // allows JavaScript files to be included in the project
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": true, // strictest possible settings for this project (non-implicit any)
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
