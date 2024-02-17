@@ -1,6 +1,14 @@
 import { useRef } from "react";
 
-const NewTodo: React.FC = () => {
+// Step 1 - We use React.FC to turn the function into a functional component.
+// Step 2 - We then <{}> and pass onAddTodo as a prop to the NewTodo component.
+// Step 3 - To define a function type, we use the arrow function syntax,
+// which describes the return type of the function after the arrow.
+// Here, we use void because the function doesn't return anything.
+// Step 4 - Now we have to pass a parameter to the function (text: string), otherwise we get an error below,
+// when we try to props.onAddTodo(enteredText) in submitHandler.
+// Step 5 - We can now create the function in App.tsx and pass it to the NewTodo component as a prop.
+const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   // We use HTMLInputElement which has a built-in type property.
   // For a button, it would be HTMLButtonElement. For a paragraph, it would be HTMLParagraphElement.
   // IMPORTANT: We have to provide a starting value (null in this case) otherwise we get an error
@@ -25,7 +33,7 @@ const NewTodo: React.FC = () => {
       return;
     }
 
-    
+    props.onAddTodo(enteredText);
   };
 
   return (
