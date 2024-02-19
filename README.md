@@ -1,4 +1,4 @@
-# To Do App
+# 📋 To Do App 📋
 
 A very basic to do app built using React and Typescript, where users can add tasks and remove them by clicking on them.
 
